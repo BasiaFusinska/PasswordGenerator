@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Password generator</title>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+</head>
+    <body>
+        <div>
+            <h2>Generate password</h2>
+        </div>
+        <div>
+            <label>UserId</label>
+            <input id="userId" type="text"/>
+            <input id="generate" type="button" value="Generate"/>
+        </div>
+        <div id="passwordContainer" style="display:none"></div>
+
+        <div>
+            <h2>Verify password</h2>
+        </div>
+        <div>
+            <label>UserId</label>
+            <input id="verifyUserId" type="text" />
+            <label>Password</label>
+            <input id="password" type="text" />
+            <input id="verify" type="button" value="Verify" />
+        </div>
+        <div id="veryficationContainer" style="display:none"></div>
+
+        <script type="text/javascript">
+            var generateUri = 'api/generate';
+
+            $('#generate').on('click', function () {
+                var userId = $('#userId').val();
+                var uri = generateUri + '?userId=' + userId;
+                $.getJSON(uri)
+                    .done(function (data) {
+                        var container = $('#passwordContainer');
+                        container.show();
+                        var containerHtml = '<h3>Password</h3>' +
+                            '<span>' + data.Password + '</span>';
+                        container.html(containerHtml);
+                    });
+            });
+        </script>
+
+        <script type="text/javascript">
+            var verifyUri = 'api/verify';
+
+            $('#verify').on('click', function () {
+                var userId = $('#verifyUserId').val();
+                var password = $('#password').val();
+
+                var uri = verifyUri + '?userId=' + userId + '&password=' + password;
+                $.getJSON(uri)
+                    .done(function (data) {
+                        console.log(data.IsValid ? 'Correct' : 'Incorrect');
+                        var container = $('#veryficationContainer');
+                        container.show();
+                        var containerHtml = '<h3>Veryfication</h3>' +
+                            '<span>' + (data.IsValid ? 'Correct' : 'Incorrect') + '</span>';
+                        container.html(containerHtml);
+                    });
+            });
+        </script>
+
+
+    </body>
+</html>
