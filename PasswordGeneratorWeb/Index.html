@@ -9,9 +9,11 @@
             <h2>Generate password</h2>
         </div>
         <div>
-            <label>UserId</label>
-            <input id="userId" type="text"/>
-            <input id="generate" type="button" value="Generate"/>
+            <form id="generateForm">
+                <label>UserId</label>
+                <input id="userId" name="userId" type="text" />
+                <input id="generate" type="submit" value="Generate" />
+            </form>
         </div>
         <div id="passwordContainer" style="display:none"></div>
 
@@ -30,11 +32,14 @@
         <script type="text/javascript">
             var generateUri = 'api/generate';
 
-            $('#generate').on('click', function () {
+            $('#generateForm').on('submit', function(event) {
+                event.preventDefault();
+
                 var userId = $('#userId').val();
-                var uri = generateUri + '?userId=' + userId;
-                $.getJSON(uri)
-                    .done(function (data) {
+
+                $.post(generateUri,
+                    { '': userId },
+                    function (data) {
                         var container = $('#passwordContainer');
                         container.show();
                         var containerHtml = '<h3>Password</h3>' +

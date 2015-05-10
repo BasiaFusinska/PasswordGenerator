@@ -6,5 +6,5 @@ Taking into consideration that generating access token is really quick and reque
 I decided not to lock the method.
 
 2. Global object
-Using HttpContext.Current.Application["Authentication"] in web project is not the most elegant solution.
+Using static field in controller is not the most elegant solution.
 In production system global object could be passed to controllers using IoC container.

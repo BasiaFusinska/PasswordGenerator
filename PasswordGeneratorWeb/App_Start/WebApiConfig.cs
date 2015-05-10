@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using System.Web.Routing;
 
 namespace PasswordGeneratorWeb
 {
@@ -14,7 +15,8 @@ namespace PasswordGeneratorWeb
             config.Routes.MapHttpRoute(
                 name: "Generator",
                 routeTemplate: "api/generate",
-                defaults: new { controller = "Password", action = "Generate" }
+                defaults: new { controller = "Password", action = "Generate" },
+                constraints: new { httpMethod = new HttpMethodConstraint("POST") }
             );
 
             config.Routes.MapHttpRoute(

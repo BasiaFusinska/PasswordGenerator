@@ -1,4 +1,4 @@
-﻿using System.Web;
+﻿using System;
 using System.Web.Http;
 using PasswordGenerator;
 
@@ -6,15 +6,10 @@ namespace PasswordGeneratorWeb.Controllers
 {
     public class PasswordController : ApiController
     {
-        private readonly Authentication _accessTokenManager;
+        private static readonly Authentication _accessTokenManager =  new Authentication(new AccessTokenGenerator(), new AccessTokenRepository(TimeSpan.FromSeconds(30)));
 
-        public PasswordController()
-        {
-            _accessTokenManager = HttpContext.Current.Application["Authentication"] as Authentication;
-        }
-
-        [HttpGet]
-        public IHttpActionResult Generate(string userId)
+        [HttpPost]
+        public IHttpActionResult Generate([FromBody]string userId)
         {
             var accessToken = _accessTokenManager.RequestAccessToken(userId);
             return Ok(new { Password = accessToken });
