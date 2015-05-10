@@ -1,11 +1,11 @@
 ﻿namespace PasswordGenerator
 {
-    public class AccessTokenManager
+    public class Authentication
     {
         private readonly IAccessTokenGenerator _accessTokenGenerator;
         private readonly IAccessTokenRepository _accessTokenRepository;
 
-        public AccessTokenManager(IAccessTokenGenerator accessTokenGenerator, IAccessTokenRepository accessTokenRepository)
+        public Authentication(IAccessTokenGenerator accessTokenGenerator, IAccessTokenRepository accessTokenRepository)
         {
             _accessTokenGenerator = accessTokenGenerator;
             _accessTokenRepository = accessTokenRepository;

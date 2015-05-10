@@ -6,11 +6,11 @@ namespace PasswordGeneratorWeb.Controllers
 {
     public class PasswordController : ApiController
     {
-        private readonly AccessTokenManager _accessTokenManager;
+        private readonly Authentication _accessTokenManager;
 
         public PasswordController()
         {
-            _accessTokenManager = HttpContext.Current.Application["AccessTokenManager"] as AccessTokenManager;
+            _accessTokenManager = HttpContext.Current.Application["Authentication"] as Authentication;
         }
 
         [HttpGet]

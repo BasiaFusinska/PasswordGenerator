@@ -15,14 +15,14 @@ namespace PasswordGeneratorTests
         private readonly AccessTokenManagerTest then;
         private readonly AccessTokenManagerTest and;
 
-        private readonly AccessTokenManager _accessTokenManager;
+        private readonly Authentication _accessTokenManager;
 
         private bool _isValid;
         private string _userPassword;
 
         public AccessTokenManagerTest()
         {
-            _accessTokenManager = new AccessTokenManager(new AccessTokenGenerator(), new AccessTokenRepository(TimeSpan.FromSeconds(10)));
+            _accessTokenManager = new Authentication(new AccessTokenGenerator(), new AccessTokenRepository(TimeSpan.FromSeconds(10)));
             when = then = and = this;
         }
 

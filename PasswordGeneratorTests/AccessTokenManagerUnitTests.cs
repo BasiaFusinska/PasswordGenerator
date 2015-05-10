@@ -17,14 +17,14 @@ namespace PasswordGeneratorTests
 
         private readonly IAccessTokenGenerator _accessTokenGenerator = Substitute.For<IAccessTokenGenerator>();
         private readonly IAccessTokenRepository _accessTokenRepository = Substitute.For<IAccessTokenRepository>();
-        private readonly AccessTokenManager _accessTokenManager;
+        private readonly Authentication _accessTokenManager;
 
         private string _userPassword;
         private bool _isValid;
 
         public AccessTokenManagerUnitTests()
         {
-            _accessTokenManager = new AccessTokenManager(_accessTokenGenerator, _accessTokenRepository);
+            _accessTokenManager = new Authentication(_accessTokenGenerator, _accessTokenRepository);
             when = then = and = this;
         }
 

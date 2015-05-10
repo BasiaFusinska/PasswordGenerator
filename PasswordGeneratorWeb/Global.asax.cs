@@ -11,7 +11,7 @@ namespace PasswordGeneratorWeb
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
-            HttpContext.Current.Application["AccessTokenManager"] = new AccessTokenManager(new AccessTokenGenerator(), new AccessTokenRepository(TimeSpan.FromSeconds(30)));
+            HttpContext.Current.Application["Authentication"] = new Authentication(new AccessTokenGenerator(), new AccessTokenRepository(TimeSpan.FromSeconds(30)));
         }
     }
 }
